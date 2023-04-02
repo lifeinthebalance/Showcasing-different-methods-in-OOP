@@ -60,4 +60,21 @@ class Text {
     }
 }
 
+class Store {
+    set(key, data) {
+        localStorage.setItem(key, JSON.stringify(data))
+    }
+
+    get(key) {
+       return JSON.parse(localStorage.getItem(key))
+    }
+
+    remove(key) {
+        if (localStorage.getItem(key)) {
+                localStorage.removeItem(key)
+        } else {
+            throw new Error
+        }
+    }
+}
 
