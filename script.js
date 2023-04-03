@@ -66,7 +66,15 @@ class Store {
     }
 
     get(key) {
-       return JSON.parse(localStorage.getItem(key))
+        let res = key.split('.');
+        let obj = JSON.parse(localStorage.getItem(res[0]));
+        if (obj) {
+            for (let prop in obj) {
+               return res[res.length - 1] == prop ? obj[prop] : false
+            }
+        } else {
+            throw new Error
+        }
     }
 
     remove(key) {
